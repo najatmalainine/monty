@@ -31,3 +31,21 @@ int line_parse(char *buf, int line_num, int format)
 	fun_find(opcode, value, line_num, format);
 	return (format);
 }
+/**
+ * file_read - it reads a file
+ * @fd: the pointer to file descriptor
+ * Return: nothing
+ */
+
+void file_read(FILE *fd)
+{
+	int line_num, format = 0;
+	char *buf = NULL;
+	size_t len = 0;
+
+	for (line_num = 1; getline(&buf, &len, fd) != -1; line_num++)
+	{
+		format = line_parse(buf, line_num, format);
+	}
+	free(buf);
+}
