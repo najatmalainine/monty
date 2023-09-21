@@ -58,3 +58,13 @@ void _div(stack_t **stck, unsigned int line_n)
 	free((*stck)->prev);
 	(*stck)->prev = NULL;
 }
+/**
+ * nop - Does nothing.
+ * @stck: thetop node of the stack.
+ * @line_n: the line number of of the opcode.
+ */
+void nop(stack_t **stck, unsigned int line_n)
+{
+	(void)stck;
+	(void)line_n;
+}
