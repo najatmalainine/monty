@@ -3,7 +3,7 @@
 /**
  * _mul - it multiplies the top two elements of the stack.
  * @stck: the top node of the stack.
- * @line_number: the line number of of the opcode.
+ * @line_n: the line number of of the opcode.
  */
 void _mul(stack_t **stck, unsigned int line_n)
 {
