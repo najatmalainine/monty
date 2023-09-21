@@ -28,3 +28,27 @@ void _swap(stack_t **h, unsigned int line_num)
 	temp->next = *h;
 	(*h) = temp;
 }
+/**
+ * _rotl - it rotates so top of stack becomes last one,
+ * second becomes first one
+ * @h: the node to be rotated
+ * @line_num: number of the node
+ */
+void _rotl(stack_t **h, unsigned int line_num)
+{
+	stack_t *temp;
+
+	(void)line_num;
+
+	if ((*h)->next != NULL)
+	{
+		temp = *h;
+		while (temp->next != NULL)
+			temp = temp->next;
+		(*h)->prev = temp;
+		temp->next = *h;
+		(*h)->next->prev = NULL;
+		*h = (*h)->next;
+		temp->next->next = NULL;
+	}
+}
