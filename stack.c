@@ -43,3 +43,19 @@ void _push(stack_t **h, unsigned int line_num, const char *n)
 		}
 	}
 }
+/**
+ * _pop - it removes the node at the front of double linked list
+ * @h: the head of linked list (node at the bottom of stack)
+ * @line_num: bytecode line number
+ */
+void _pop(stack_t **h, unsigned int line_num)
+{
+	if (h == NULL || *h == NULL)
+	{
+		printf("L%u: can't pop an empty stack\n", line_num);
+		free_dlist(h);
+		exit(EXIT_FAILURE);
+	}
+	else
+		delete_end_node(h);
+}
