@@ -41,3 +41,21 @@ void stck_print(stack_t **stck, unsigned int line_n)
 		tmp = tmp->next;
 	}
 }
+/**
+ * top_pop - it adds a node to the stack.
+ * @stck: a pointer to a pointer pointing to top node of the stack.
+ * @line_number: the line number of of the opcode.
+ */
+void top_pop(stack_t **stck, unsigned int line_number)
+{
+	stack_t *temp;
+
+	if (stck == NULL || *stck == NULL)
+		_err_plus(7, line_number);
+
+	temp = *stck;
+	*stck = temp->next;
+	if (*stck != NULL)
+		(*stck)->prev = NULL;
+	free(temp);
+}
