@@ -65,3 +65,50 @@ void file_open(char *file_n)
 	file_read(fd);
 	fclose(fd);
 }
+/**
+ * fun_find - it finds the appropriate function for the opcode
+ * @opcode: opcode
+ * @value: argument of opcode
+ * @format:  storage format. If 0 Nodes will be entered as a stack.
+ * @ln: line number
+ * if 1 nodes will be entered as a queue.
+ * Return: void
+ */
+void fun_find(char *opcode, char *value, int ln, int format)
+{
+	int i;
+	int flag;
+
+	instruction_t func_list[] = {
+		{"push", stack_add},
+		{"pall", stck_print},
+		{"pint", top_print},
+		{"pop", top_pop},
+		{"nop", nop},
+		{"swap", n_swap},
+		{"add", _add},
+		{"sub", _sub},
+		{"div", _div},
+		{"mul", _mul},
+		{"mod", _mod},
+		{"pchar", char_print},
+		{"pstr", str_print},
+		{"rotl", _rotl},
+		{"rotr", _rotr},
+		{NULL, NULL}
+	};
+
+	if (opcode[0] == '#')
+		return;
+
+	for (flag = 1, i = 0; func_list[i].opcode != NULL; i++)
+	{
+		if (strcmp(opcode, func_list[i].opcode) == 0)
+		{
+			func_call(func_list[i].f, opcode, value, ln, format);
+			flag = 0;
+		}
+	}
+	if (flag == 1)
+		_err(3, ln, opcode);
+}
