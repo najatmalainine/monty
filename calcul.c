@@ -71,3 +71,24 @@ void div_(stack_t **h, unsigned int line_num)
 	free((*h)->prev);
 	(*h)->prev = NULL;
 }
+/**
+ * mod_ - modulus second node from top node
+ * @h: top node
+ * @line_num: number of line of command
+ */
+void mod_(stack_t **h, unsigned int line_num)
+{
+	if (h == NULL || *h == NULL)
+	{
+		printf("L%u: can't mod, stack too short\n", line_num);
+		exit(EXIT_FAILURE);
+	}
+	if ((*h)->n == 0 || (*h)->next->n == 0)
+	{
+		printf("L%u: division by zero\n", line_num);
+	}
+	(*h)->next->n %= (*h)->n;
+	(*h) = (*h)->next;
+	free((*h)->prev);
+	(*h)->prev = NULL;
+}
