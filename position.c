@@ -52,3 +52,26 @@ void _rotl(stack_t **h, unsigned int line_num)
 		temp->next->next = NULL;
 	}
 }
+/**
+ * _rotr - it rotates so the bottom node of stack becomes first one
+ * @h: the node to be rotated
+ * @line_num: the number of the node
+ */
+void _rotr(stack_t **h, unsigned int line_num)
+{
+	stack_t *temp;
+
+	(void)line_num;
+
+	if ((*h)->next != NULL)
+	{
+		temp = *h;
+		while (temp->next != NULL)
+			temp = temp->next;
+		(*h)->prev = temp;
+		temp->next = *h;
+		temp->prev->next = NULL;
+		temp->prev = NULL;
+		(*h) = (*h)->prev;
+	}
+}
