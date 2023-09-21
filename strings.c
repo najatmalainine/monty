@@ -44,3 +44,48 @@ void str_print(stack_t **stck, __attribute__((unused))unsigned int line_n)
 	}
 	printf("\n");
 }
+/**
+ * _rotl - it rotates the first node of the stack to the last.
+ * @stck: the top node of the stack.
+ * @line_n: Interger representing the line number of of the opcode.
+ */
+void _rotl(stack_t **stck, __attribute__((unused))unsigned int line_n)
+{
+	stack_t *temp;
+
+	if (stck == NULL || *stck == NULL || (*stck)->next == NULL)
+		return;
+
+	temp = *stck;
+	while (temp->next != NULL)
+		temp = temp->next;
+
+	temp->next = *stck;
+	(*stck)->prev = temp;
+	*stck = (*stck)->next;
+	(*stck)->prev->next = NULL;
+	(*stck)->prev = NULL;
+}
+/**
+ * _rotr - it rotates the last node of the stack to the top.
+ * @stck: the top node of the stack.
+ * @line_n: the line number of of the opcode.
+ */
+void _rotr(stack_t **stck, __attribute__((unused))unsigned int line_n)
+{
+	stack_t *temp;
+
+	if (stck == NULL || *stck == NULL || (*stck)->next == NULL)
+		return;
+
+	temp = *stck;
+
+	while (temp->next != NULL)
+		temp = temp->next;
+
+	temp->next = *stck;
+	temp->prev->next = NULL;
+	temp->prev = NULL;
+	(*stck)->prev = temp;
+	(*stck) = temp;
+}
