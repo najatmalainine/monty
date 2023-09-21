@@ -77,3 +77,13 @@ void _pstr(stack_t **h, unsigned int line_num)
 	}
 	printf("\n");
 }
+/**
+ * _nop - to do nothing
+ * @h: head of list
+ * @line_num: line number of bytecode
+ */
+void _nop(stack_t **h, unsigned int line_num)
+{
+	(void)h;
+	(void)line_num;
+}
