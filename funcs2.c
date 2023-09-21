@@ -68,3 +68,23 @@ void nop(stack_t **stck, unsigned int line_n)
 	(void)stck;
 	(void)line_n;
 }
+/**
+ * n_swap - it swaps the top two elements of the stack.
+ * @stck: the top node of the stack.
+ * @line_n: the line number of of the opcode.
+ */
+void n_swap(stack_t **stck, unsigned int line_n)
+{
+	stack_t *temp;
+
+	if (stck == NULL || *stck == NULL || (*stck)->next == NULL)
+		_err_plus(8, line_n, "swap");
+	temp = (*stck)->next;
+	(*stck)->next = temp->next;
+	if (temp->next != NULL)
+		temp->next->prev = *stck;
+	temp->next = *stck;
+	(*stck)->prev = temp;
+	temp->prev = NULL;
+	*stck = temp;
+}
