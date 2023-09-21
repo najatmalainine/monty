@@ -18,3 +18,28 @@ int _isnumber(const char *n)
 	}
 	return (0);
 }
+/**
+ * _push - it adds a node to the start of double linked list
+ * @h: the head of linked list (node at the bottom of stack)
+ * @line_num: line number of bytecode
+ * @n: int
+ */
+void _push(stack_t **h, unsigned int line_num, const char *n)
+{
+	if (!h)
+		return;
+	if (_isnumber(n) == -1)
+	{
+		printf("L%u: usage: push integer\n", line_num);
+		free_dlist(h);
+		exit(EXIT_FAILURE);
+	}
+	else
+	{
+		if (add_end_node(h, atoi(n)) == -1)
+		{
+			free_dlist(h);
+			exit(EXIT_FAILURE);
+		}
+	}
+}
