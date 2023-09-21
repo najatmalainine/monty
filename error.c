@@ -74,3 +74,28 @@ void _err_plus(int error_code, ...)
 	n_free();
 	exit(EXIT_FAILURE);
 }
+/**
+ * err_str - it handles errors.
+ * @error_code: The error codes
+ */
+void err_str(int error_code, ...)
+{
+	va_list ag;
+	int l_num;
+
+	va_start(ag, error_code);
+	l_num = va_arg(ag, int);
+	switch (error_code)
+	{
+		case 10:
+			fprintf(stderr, "L%d: can't pchar, value out of range\n", l_num);
+			break;
+		case 11:
+			fprintf(stderr, "L%d: can't pchar, stack empty\n", l_num);
+			break;
+		default:
+			break;
+	}
+	n_free();
+	exit(EXIT_FAILURE);
+}
