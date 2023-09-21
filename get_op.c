@@ -17,6 +17,11 @@ void (*get_op(char *tkn1))(stack_t **stack, unsigned int line_num)
 		{"mul", mul_},
 		{"div", div_},
 		{"mod", mod_},
+		{"pchar", _pchar},
+		{"pstr", _pstr},
+		{"nop", _nop},
+		{"rotl", _rotl},
+		{"rotr", _rotr},
 		{NULL, NULL}};
 	int i = 0;
 
