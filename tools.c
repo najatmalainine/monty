@@ -112,3 +112,42 @@ void fun_find(char *opcode, char *value, int ln, int format)
 	if (flag == 1)
 		_err(3, ln, opcode);
 }
+/**
+ * func_call - it calls the required function.
+ * @func: Pointer to the function that is about to be called.
+ * @opc: string representing the opcode.
+ * @val: string representing a numeric value.
+ * @line_n: line numeber for the instruction.
+ * @format: Format specifier. If 0 Nodes will be entered as a stack.
+ * if 1 nodes will be entered as a queue.
+ */
+void func_call(op_f func, char *opc, char *val, int line_n, int format)
+{
+	stack_t *node;
+	int flag;
+	int i;
+
+	flag = 1;
+	if (strcmp(opc, "push") == 0)
+	{
+		if (val != NULL && val[0] == '-')
+		{
+			val = val + 1;
+			flag = -1;
+		}
+		if (val == NULL)
+			_err(5, line_n);
+		for (i = 0; val[i] != '\0'; i++)
+		{
+			if (isdigit(val[i]) == 0)
+				_err(5, line_n);
+		}
+		node = n_create(atoi(val) * flag);
+		if (format == 0)
+			func(&node, line_n);
+		if (format == 1)
+			queue_add(&node, line_n);
+	}
+	else
+		func(&head, line_n);
+}
