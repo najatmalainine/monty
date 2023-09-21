@@ -49,3 +49,19 @@ void file_read(FILE *fd)
 	}
 	free(buf);
 }
+/**
+ * file_open - it opens a file
+ * @file_n: the file name
+ * Return: void
+ */
+
+void file_open(char *file_n)
+{
+	FILE *fd = fopen(file_n, "r");
+
+	if (file_n == NULL || fd == NULL)
+		_err(2, file_n);
+
+	file_read(fd);
+	fclose(fd);
+}
