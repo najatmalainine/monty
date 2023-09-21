@@ -53,3 +53,27 @@ void _pchar(stack_t **h, unsigned int line_num)
 		exit(EXIT_FAILURE);
 	}
 }
+/**
+ * _pstr - it prints the top nodes in the stack as an ascii letter
+ * stops only if end of stack, node is 0, or not in ascii table
+ * @h: head of list
+ * @line_num: bytecode line number
+ */
+void _pstr(stack_t **h, unsigned int line_num)
+{
+	stack_t *temp;
+
+	if (!h || !*h)
+	{
+		printf("L%u: can't pchar, stack empty\n", line_num);
+		exit(EXIT_FAILURE);
+	}
+	temp = *h;
+	while ((temp != NULL) && (temp->n != 0) &&
+		   (temp->n >= 0) && (temp->n <= 127))
+	{
+		printf("%c", (temp)->n);
+		temp = temp->next;
+	}
+	printf("\n");
+}
