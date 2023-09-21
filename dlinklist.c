@@ -35,3 +35,25 @@ int add_end_node(stack_t **h, int n)
 	}
 	return (0);
 }
+/**
+ * delete_end_node - deleting the node at end of doubly linked list
+ * @h: head of doubly linked list
+ */
+void delete_end_node(stack_t **h)
+{
+	stack_t *del = NULL;
+
+
+	del = *h;
+	if ((*h)->next == NULL)
+	{
+		*h = NULL;
+		free(del);
+	}
+	else
+	{
+		*h = (*h)->next;
+		(*h)->prev = NULL;
+		free(del);
+	}
+}
